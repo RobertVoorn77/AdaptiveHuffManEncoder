@@ -4,6 +4,6 @@ public interface IBitStream {
 
 	public boolean readBit();
 	public void writeBit(boolean bit);
-	public char readCharAt(int i);
+	public void reset();
 	
 }

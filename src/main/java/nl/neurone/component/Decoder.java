@@ -21,7 +21,7 @@ public class Decoder {
 
 		int i = 0;
 		while (!(node instanceof Leaf)) {
-			if (bitStream.readCharAt(i++) == '1') {
+			if (bitStream.readBit()) {
 				node = ((Node)node).getRight();
 			} else {
 				node = ((Node)node).getLeft();

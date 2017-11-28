@@ -6,7 +6,7 @@ import java.util.List;
 public class BitStreamTestHelper implements IBitStream {
 	private char[] bits = null;
 	private int index = 0;
-	private List<Character> bitsList = new LinkedList<Character>();
+	private List<Character> bitsList = null;
 	
 	public BitStreamTestHelper(String bits) {
 		this.bits = bits.toCharArray();
@@ -26,15 +26,14 @@ public class BitStreamTestHelper implements IBitStream {
 	public void writeBit(boolean bit) {
 		bitsList.add(bit?'1':'0');
 		bits = new char[bitsList.size()];
-		int index = 0;
-		for (char bitLoop : bits) {
-			bits[index++] = bitLoop;
+		for (int index = 0; index < bits.length; index++) {
+			bits[index] = bitsList.get(index);
 		}
 	}
 
 	@Override
-	public char readCharAt(int i) {
-		return bitsList.get(i);
+	public void reset() {
+		index = 0;
+		bitsList = new LinkedList<Character>();
 	}
-
 }
