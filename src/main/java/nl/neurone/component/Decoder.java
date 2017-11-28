@@ -20,10 +20,10 @@ public class Decoder {
 
 		int i = 0;
 		while (!(node instanceof Leaf)) {
-			if (bits.charAt(i++) == '0') {
-				node = ((Node)node).getLeft();
-			} else {
+			if (bits.charAt(i++) == '1') {
 				node = ((Node)node).getRight();
+			} else {
+				node = ((Node)node).getLeft();
 			}
 		}
 		return ((Leaf)node).getValue();
