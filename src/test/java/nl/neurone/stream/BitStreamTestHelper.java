@@ -1,5 +1,6 @@
 package nl.neurone.stream;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,6 +17,10 @@ public class BitStreamTestHelper implements IBitStream {
 		}
 	}
 	
+	public BitStreamTestHelper() {
+		this("");
+	}
+
 	@Override
 	public boolean readBit() {
 		char bit = bits[index++];
@@ -36,4 +41,23 @@ public class BitStreamTestHelper implements IBitStream {
 		index = 0;
 		bitsList = new LinkedList<Character>();
 	}
+
+	@Override
+	public boolean isEOF() {
+		return index == bitsList.size();
+	}
+
+	public String getResultString() {
+		String result = "";
+		for (Character bit : bitsList) {
+			result += bit;
+		}
+		return result;
+	}
+	
+	@Override
+	public String toString() {
+		return ", index: " + index + ", array: " + Arrays.toString(bits) + " and List: " + bitsList;
+	}
+	
 }

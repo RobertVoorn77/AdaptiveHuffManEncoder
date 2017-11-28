@@ -19,7 +19,6 @@ public class BitStreamTestHelperTest {
 		for (char bit : bitArray) {
 			Boolean bitBool = (bit == '1');
 			boolean readBit = bitStream.readBit();
-			System.out.println("comparing " + bitBool + " with " + readBit);
 			assertEquals(bitBool, readBit);
 		}
 	}

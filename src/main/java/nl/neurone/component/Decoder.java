@@ -1,5 +1,8 @@
 package nl.neurone.component;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import nl.neurone.domain.HuffManTree;
 import nl.neurone.domain.Leaf;
 import nl.neurone.domain.Node;
@@ -16,7 +19,6 @@ public class Decoder {
 	
 	Object decodeValue(IBitStream bitStream) {
 		root = treeBuilder.getRoot();
-		System.out.println(root.getString());
 		TreeNode node = root;
 
 		while (!(node instanceof Leaf)) {
@@ -27,8 +29,20 @@ public class Decoder {
 			}
 		}
 		Leaf leaf = (Leaf)node;
+//		System.out.println("Tree when decoding for " + leaf.getValue() + " --> " + root.getString());
 		leaf.incrementFrequency();
 		return leaf.getValue();
+	}
+	
+	Object[] decodeValues(IBitStream bitStream) {
+		List<Object> values = new LinkedList<>();
+		
+		while (!bitStream.isEOF()) {
+			Object value = decodeValue(bitStream);
+			values.add(value);
+		}
+		
+		return values.toArray();
 	}
 	
 }
