@@ -23,7 +23,7 @@ public class DecoderTest {
 	}
 	
 	@Test
-	public void testDecodeValue() {
+	public void testDecodeValueB_once() {
 		// when
 		IBitStream bitStream = new BitStreamTestHelper("11");
 		Object result = decoder.decodeValue(bitStream);

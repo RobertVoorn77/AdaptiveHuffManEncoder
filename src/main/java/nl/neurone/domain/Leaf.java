@@ -57,4 +57,8 @@ public class Leaf implements TreeNode {
 	public TreeNode getParent() {
 		return parent;
 	}
+
+	public void incrementFrequency() {
+		frequency++;
+	}
 }

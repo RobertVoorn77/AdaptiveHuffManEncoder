@@ -19,7 +19,6 @@ public class Decoder {
 		System.out.println(root.getString());
 		TreeNode node = root;
 
-		int i = 0;
 		while (!(node instanceof Leaf)) {
 			if (bitStream.readBit()) {
 				node = ((Node)node).getRight();
@@ -27,7 +26,9 @@ public class Decoder {
 				node = ((Node)node).getLeft();
 			}
 		}
-		return ((Leaf)node).getValue();
+		Leaf leaf = (Leaf)node;
+		leaf.incrementFrequency();
+		return leaf.getValue();
 	}
 	
 }
