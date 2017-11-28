@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import nl.neurone.domain.HuffManTree;
+import nl.neurone.stream.BitStreamTestHelper;
+import nl.neurone.stream.IBitStream;
 
 public class DecoderTest {
 	private Decoder decoder;
@@ -23,7 +25,8 @@ public class DecoderTest {
 	@Test
 	public void testDecodeValue() {
 		// when
-		Object result = decoder.decodeValue("11");
+		IBitStream bitStream = new BitStreamTestHelper("11");
+		Object result = decoder.decodeValue(bitStream);
 		
 		// then
 		assertEquals("b", result);
@@ -35,7 +38,8 @@ public class DecoderTest {
 		tree.addValue("d");
 		
 		// when
-		Object result = decoder.decodeValue("01");
+		IBitStream bitStream = new BitStreamTestHelper("01");
+		Object result = decoder.decodeValue(bitStream);
 		
 		// then
 		assertEquals("b", result);
