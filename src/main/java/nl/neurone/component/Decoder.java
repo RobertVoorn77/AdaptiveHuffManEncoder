@@ -44,5 +44,8 @@ public class Decoder {
 		
 		return values.toArray();
 	}
-	
+
+	public HuffManTree getTree() {
+		return treeBuilder;
+	}
 }

@@ -49,4 +49,8 @@ public class Encoder {
 	public String toString() {
 		return "Encoder state, bitStream: " + bitStream + " with treeBuilder: " + treeBuilder.getRoot().getString();
 	}
+
+	public HuffManTree getTree() {
+		return treeBuilder;
+	}
 }
