@@ -33,7 +33,6 @@ public class CharacterFileDecoder {
 			while (!bitInputStream.isEOF()) {
 				char c = (char) decoder.decodeValue(bitInputStream);
 				os.write(c);
-				System.out.print(c);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

@@ -9,6 +9,14 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Vector;
 
+/**
+ * Generic HuffManTree implementation that will be used by the generic Encoder and Decoder. It provides some methods for adding values
+ * as nodes in the tree.
+ * TODO: This implementation is suboptimal and quite slow (rebuildTree solution) and should be improved once the experiment has been
+ * proven to work 
+ * @author Robert Voorn
+ *
+ */
 public class HuffManTree {
 	private Set<TreeNode> treeNodes = null; 
 	private Set<TreeNode> leafs = null; 
@@ -21,11 +29,11 @@ public class HuffManTree {
 		leafsMap = new TreeMap<>();
 	}
 	
-	public void addInternalTreeNode(TreeNode node) {
+	protected void addInternalTreeNode(TreeNode node) {
 		treeNodes.add(node);
 	}
 
-	public void addTreeNode(TreeNode node) {
+	protected void addTreeNode(TreeNode node) {
 		if (node instanceof Leaf) {
 			leafs.add(node);
 			Leaf leaf = (Leaf) node;
@@ -38,7 +46,7 @@ public class HuffManTree {
 		return treeNodes;
 	}
 	
-	public Set<TreeNode> getleafs() {
+	protected Set<TreeNode> getleafs() {
 		return leafs;
 	}
 	
@@ -46,7 +54,7 @@ public class HuffManTree {
 		return leafsMap.get(value);
 	}
 	
-	public TreeNode rebuildTree() {
+	protected TreeNode rebuildTree() {
 		List<TreeNode> tree = new Vector<>();
 		tree.addAll(leafs);
 		while (tree.size() > 1) {

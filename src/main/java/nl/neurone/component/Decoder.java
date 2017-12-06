@@ -9,6 +9,11 @@ import nl.neurone.domain.Node;
 import nl.neurone.domain.TreeNode;
 import nl.neurone.stream.IBitStream;
 
+/**
+ * Generic decoder that does not have any knowledge of the data that needs decoding.
+ * @author Robert Voorn
+ *
+ */
 public class Decoder {
 	private HuffManTree treeBuilder;
 	private TreeNode root;
@@ -29,11 +34,16 @@ public class Decoder {
 			}
 		}
 		Leaf leaf = (Leaf)node;
-//		System.out.println("Tree when decoding for " + leaf.getValue() + " --> " + root.getString());
 		leaf.incrementFrequency();
 		return leaf.getValue();
 	}
 	
+	/**
+	 * Convenience method and not really used in the applications (makes no sense for data to be first processed into array of Objects
+	 * and then written individually to an output stream
+	 * @param bitStream
+	 * @return
+	 */
 	Object[] decodeValues(IBitStream bitStream) {
 		List<Object> values = new LinkedList<>();
 		
@@ -45,7 +55,7 @@ public class Decoder {
 		return values.toArray();
 	}
 
-	public HuffManTree getTree() {
+	public HuffManTree getHuffManTree() {
 		return treeBuilder;
 	}
 }

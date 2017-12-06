@@ -5,6 +5,11 @@ import nl.neurone.domain.Node;
 import nl.neurone.domain.TreeNode;
 import nl.neurone.stream.IBitStream;
 
+/**
+ * Generic encoder that does not have any knowledge of the data that needs encoding.
+ * @author Robert Voorn
+ *
+ */
 public class Encoder {
 	private HuffManTree treeBuilder;
 	private TreeNode root;
@@ -25,7 +30,6 @@ public class Encoder {
 	public String encodeValue(Object value) {
 		TreeNode leaf = (TreeNode) treeBuilder.getLeafByValue(value);
 		root = treeBuilder.getRoot();
-		System.out.println(root.getString());
 		return encodeValueStr(leaf);
 	}
 	
@@ -55,9 +59,5 @@ public class Encoder {
 	@Override
 	public String toString() {
 		return "Encoder state, bitStream: " + bitStream + " with treeBuilder: " + treeBuilder.getRoot().getString();
-	}
-
-	public HuffManTree getTree() {
-		return treeBuilder;
 	}
 }

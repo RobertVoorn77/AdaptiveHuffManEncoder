@@ -35,6 +35,15 @@ public class EncoderTest {
 	}
 	
 	@Test
+	public void testEncoderReturnsCorrectTree() {
+		// when
+		HuffManTree encoderTree = encoder.getHuffManTree();
+		
+		// then
+		assertEquals(encoderTree, tree);
+	}
+	
+	@Test
 	public void testEncodeValue_2() {
 		// given
 		tree.addValue("d");

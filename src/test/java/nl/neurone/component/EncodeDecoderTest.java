@@ -23,7 +23,6 @@ public class EncodeDecoderTest {
 		tree.addValue("a");
 		tree.addValue("b");
 		tree.addValue("c");
-		System.out.println("Setting up the tree: " + tree.getRoot().getString());
 		bitStream = new BitStreamTestHelper();
 		decoder = new Decoder();
 		decoder.setHuffManTree(tree);
@@ -37,7 +36,6 @@ public class EncodeDecoderTest {
 		for (Object value : values) {
 			// given
 			setup();
-			System.out.println("Encoding: " + value);
 			encoder.encodeValue(value);
 			
 			// when
@@ -45,12 +43,10 @@ public class EncodeDecoderTest {
 	
 			// then
 			assertEquals(value, result);
-			HuffManTree encoderTree = encoder.getTree();
+			HuffManTree encoderTree = encoder.getHuffManTree();
 			String encoderTreeStr = encoderTree.getRoot().getString();
-			HuffManTree decoderTree = decoder.getTree();
+			HuffManTree decoderTree = decoder.getHuffManTree();
 			String decoderTreeStr = decoderTree.getRoot().getString();
-			System.out.println("encoderTreeStr for '" + value + "': " + encoderTreeStr);
-			System.out.println("decoderTreeStr for '" + value + "': " + decoderTreeStr);
 			assertEquals(encoderTreeStr, decoderTreeStr);
 		}
 	}
@@ -82,9 +78,9 @@ public class EncodeDecoderTest {
 			assertEquals(expectedValue, result[index++]);
 		}
 		System.out.println("Encoder state: " + encoder.toString());
-		HuffManTree encoderTree = encoder.getTree();
+		HuffManTree encoderTree = encoder.getHuffManTree();
 		String encoderTreeStr = encoderTree.getRoot().getString();
-		HuffManTree decoderTree = decoder.getTree();
+		HuffManTree decoderTree = decoder.getHuffManTree();
 		String decoderTreeStr = decoderTree.getRoot().getString();
 		System.out.println("encoderTreeStr: " + encoderTreeStr);
 		System.out.println("decoderTreeStr: " + decoderTreeStr);

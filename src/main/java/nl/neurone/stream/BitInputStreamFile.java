@@ -40,7 +40,10 @@ public class BitInputStreamFile implements IBitStream {
 		}
 	}
 
-	// TODO: make a test case for this method (works for small files, but certainly not for all files as it does not take the bits into account)
+	/** TODO: make a some rigorous test cases for this method
+	 * works for my current small test files, but implementation does certainly not work for all files
+	 * as it does not take the all the bits into account (the bits in the last byte could be skipped and the file terminated too early 
+	 */
 	public boolean isEOF() {
 		try {
 			return is.available() == 0;

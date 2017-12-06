@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * 'Borrowed' from the Internet https://stackoverflow.com/questions/4220917/is-it-possible-to-read-write-bits-from-a-file-using-java
+ *  'Borrowed' due to time constraints 
+ *  TODO: implement my own version and add unit tests for that 
+ *  from the Internet https://stackoverflow.com/questions/4220917/is-it-possible-to-read-write-bits-from-a-file-using-java
  *
  */
 class BitOutputStream {

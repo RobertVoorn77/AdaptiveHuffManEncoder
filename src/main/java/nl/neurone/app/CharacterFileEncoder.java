@@ -30,7 +30,6 @@ public class CharacterFileEncoder {
 			is = new BufferedReader(new FileReader(fileName));
 			while (is.ready()) {
 				char c = (char)is.read();
-				System.out.print(c);
 				encoder.encodeValue(c);
 			}
 		} catch (FileNotFoundException e) {
