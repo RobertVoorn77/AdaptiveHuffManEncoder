@@ -21,7 +21,8 @@ public class EncoderTest {
 		tree.addValue("b");
 		tree.addValue("c");
 		bitStream = new BitStreamTestHelper();
-		encoder = new Encoder(tree, bitStream);
+		encoder = new Encoder(bitStream);
+		encoder.setHuffManTree(tree);
 	}
 	
 	@Test

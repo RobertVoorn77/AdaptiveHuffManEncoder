@@ -50,25 +50,32 @@ public class HuffManTree {
 		List<TreeNode> tree = new Vector<>();
 		tree.addAll(leafs);
 		while (tree.size() > 1) {
+			// sort all nodes on frequency (ascending)
+			sortTree(tree);
+			// get the first 2 nodes (lowest frequency)
 			Iterator<TreeNode> it = tree.iterator();
 			TreeNode left = it.next();
 			it.remove();
 			TreeNode right = it.next();
 			it.remove();
+			// combine lowest frequencies and add them to the list of nodes
 			Node newNode = new Node(left, right);
 			tree.add(newNode);
-			tree.sort(new Comparator<TreeNode>() {
-
-				@Override
-				public int compare(TreeNode a, TreeNode b) {
-					return a.getFrequency().compareTo(b.getFrequency());
-				}
-				
-			});
 		}
 		Iterator<TreeNode> it = tree.iterator();
 		root = it.next();
 		return root;
+	}
+
+	private void sortTree(List<TreeNode> tree) {
+		tree.sort(new Comparator<TreeNode>() {
+
+			@Override
+			public int compare(TreeNode a, TreeNode b) {
+				return a.getFrequency().compareTo(b.getFrequency());
+			}
+			
+		});
 	}
 
 	public TreeNode getRoot() {

@@ -2,6 +2,8 @@ package nl.neurone.component;
 
 import static org.junit.Assert.*;
 
+import java.util.Random;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,13 +25,15 @@ public class EncodeDecoderTest {
 		tree.addValue("c");
 		System.out.println("Setting up the tree: " + tree.getRoot().getString());
 		bitStream = new BitStreamTestHelper();
-		decoder = new Decoder(tree);
-		encoder = new Encoder(tree, bitStream);
+		decoder = new Decoder();
+		decoder.setHuffManTree(tree);
+		encoder = new Encoder(bitStream);
+		encoder.setHuffManTree(tree);
 	}
 
 	@Test
 	public void testEncodeDecodeValue() {
-		Object[] values = new Object[] {"a", "b", "c" };
+		Object[] values = getRandomInputObjects();
 		for (Object value : values) {
 			// given
 			setup();
@@ -51,11 +55,22 @@ public class EncodeDecoderTest {
 		}
 	}
 
+	private Object[] getRandomInputObjects() {
+		int size = 30;
+		Object[] result = new Object[size];
+		Random random = new Random();
+		Object[] choices = new Object[] {"a", "b", "c" };
+		for (int i = 0; i < size; i++) {
+			result[i] = choices[random.nextInt(choices.length)];
+		}
+		return result;
+	}
+
 	@Test
 	public void testEncodeDecodeValues() {
 		setup();
 		// given
-		Object[] values = new Object[] {"a", "b", "c" };
+		Object[] values = getRandomInputObjects();
 		encoder.encodeValues(values);
 
 		// when
@@ -66,6 +81,7 @@ public class EncodeDecoderTest {
 		for (Object expectedValue : values) {
 			assertEquals(expectedValue, result[index++]);
 		}
+		System.out.println("Encoder state: " + encoder.toString());
 		HuffManTree encoderTree = encoder.getTree();
 		String encoderTreeStr = encoderTree.getRoot().getString();
 		HuffManTree decoderTree = decoder.getTree();

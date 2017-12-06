@@ -13,11 +13,11 @@ public class Decoder {
 	private HuffManTree treeBuilder;
 	private TreeNode root;
 
-	public Decoder(HuffManTree treeBuilder) {
+	public void setHuffManTree(HuffManTree treeBuilder) {
 		this.treeBuilder = treeBuilder;
 	}
 	
-	Object decodeValue(IBitStream bitStream) {
+	public Object decodeValue(IBitStream bitStream) {
 		root = treeBuilder.getRoot();
 		TreeNode node = root;
 

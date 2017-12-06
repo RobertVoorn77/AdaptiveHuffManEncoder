@@ -10,12 +10,19 @@ public class Encoder {
 	private TreeNode root;
 	private IBitStream bitStream;
 
-	public Encoder(HuffManTree treeBuilder, IBitStream bitStream) {
-		this.treeBuilder = treeBuilder;
+	public Encoder(IBitStream bitStream) {
 		this.bitStream = bitStream;
 	}
 	
-	String encodeValue(Object value) {
+	public void setHuffManTree(HuffManTree treeBuilder) {
+		this.treeBuilder = treeBuilder;
+	}
+	
+	public HuffManTree getHuffManTree() {
+		return this.treeBuilder;
+	}
+	
+	public String encodeValue(Object value) {
 		TreeNode leaf = (TreeNode) treeBuilder.getLeafByValue(value);
 		root = treeBuilder.getRoot();
 		System.out.println(root.getString());

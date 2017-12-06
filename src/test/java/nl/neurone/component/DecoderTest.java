@@ -19,7 +19,8 @@ public class DecoderTest {
 		tree.addValue("a");
 		tree.addValue("b");
 		tree.addValue("c");
-		decoder = new Decoder(tree);
+		decoder = new Decoder();
+		decoder.setHuffManTree(tree);
 	}
 
 	@Test
