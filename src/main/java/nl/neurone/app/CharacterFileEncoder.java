@@ -25,25 +25,16 @@ public class CharacterFileEncoder {
 	}
 
 	private void encodeFile(String fileName) {
-		BufferedReader is = null;
-		try {
-			is = new BufferedReader(new FileReader(fileName));
+		try (BufferedReader is = new BufferedReader(new FileReader(fileName))) {
 			while (is.ready()) {
 				char c = (char)is.read();
 				encoder.encodeValue(c);
+				System.out.print(c);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			if (is != null) {
-				try {
-					is.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
 		}
 	}
 }

@@ -1,5 +1,12 @@
 package nl.neurone.domain;
 
+/**
+ * This class represents a leaf in the binary tree (HuffManTree) and represents a value that can be encoded. This node will also contain a frequency value
+ * that will be the amount of times this value was encoded already. This value is needed to build the HuffManTree.
+ *  
+ * @author Robert Voorn
+ *
+ */
 public class Leaf implements TreeNode {
 	Object value;
 	long frequency;
@@ -30,6 +37,13 @@ public class Leaf implements TreeNode {
 		return frequency;
 	}
 
+	
+	/**
+	 * This method will compare 2 leafs of treenodes based on:
+	 * 1. the frequency
+	 * 2. if the frequencies are equal the comparison will be done on the value itself
+	 * 
+	 */
 	@Override
 	public int compareTo(Object that) {
 		if (that == null) {

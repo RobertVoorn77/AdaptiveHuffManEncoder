@@ -13,21 +13,26 @@ import nl.neurone.stream.IBitStream;
 
 public class EncodeDecoderTest {
 	private IBitStream bitStream;
-	private HuffManTree tree;
 	private Decoder decoder;
 	private Encoder encoder;
 
 	@Before
 	public void setup() {
-		tree = new HuffManTree();
+		HuffManTree encoderTree = createTree();
+		HuffManTree decoderTree = createTree();
+		bitStream = new BitStreamTestHelper();
+		decoder = new Decoder();
+		decoder.setHuffManTree(decoderTree);
+		encoder = new Encoder(bitStream);
+		encoder.setHuffManTree(encoderTree);
+	}
+
+	private HuffManTree createTree() {
+		HuffManTree tree = new HuffManTree();
 		tree.addValue("a");
 		tree.addValue("b");
 		tree.addValue("c");
-		bitStream = new BitStreamTestHelper();
-		decoder = new Decoder();
-		decoder.setHuffManTree(tree);
-		encoder = new Encoder(bitStream);
-		encoder.setHuffManTree(tree);
+		return tree;
 	}
 
 	@Test
@@ -73,6 +78,7 @@ public class EncodeDecoderTest {
 		Object[] result = decoder.decodeValues(bitStream);
 
 		// then
+		setup();
 		int index = 0;
 		for (Object expectedValue : values) {
 			assertEquals(expectedValue, result[index++]);

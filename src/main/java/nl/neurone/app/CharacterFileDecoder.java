@@ -10,7 +10,6 @@ import nl.neurone.stream.BitInputStreamFile;
 
 public class CharacterFileDecoder {
 	private CharacterDecoder decoder;
-	private BufferedWriter os;
 	private BitInputStreamFile bitInputStream;
 
 	public static void main(String args[]) {
@@ -28,25 +27,16 @@ public class CharacterFileDecoder {
 	}
 
 	private void decodeFile(String fileName) {
-		try {
-			os = new BufferedWriter(new FileWriter(fileName));
+		try (BufferedWriter os = new BufferedWriter(new FileWriter(fileName))) {
 			while (!bitInputStream.isEOF()) {
 				char c = (char) decoder.decodeValue(bitInputStream);
 				os.write(c);
+				System.out.print(c);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			if (os != null) {
-				try {
-					os.flush();
-					os.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
 		}
 	}
 }

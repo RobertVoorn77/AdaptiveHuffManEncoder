@@ -62,6 +62,6 @@ public class EncoderTest {
 		
 		// then
 		String result = ((BitStreamTestHelper)bitStream).getResultString();
-		assertEquals("1001011", result);
+		assertEquals("10111110", result);
 	}
 }

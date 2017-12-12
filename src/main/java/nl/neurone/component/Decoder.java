@@ -10,9 +10,9 @@ import nl.neurone.domain.TreeNode;
 import nl.neurone.stream.IBitStream;
 
 /**
- * Generic decoder that does not have any knowledge of the data that needs decoding.
+ * Generic decoder that does not have any knowledge of the data that needs decoding. No initial tree is present. This will be done by a subclass of this class.
+ * 
  * @author Robert Voorn
- *
  */
 public class Decoder {
 	private HuffManTree treeBuilder;
@@ -22,6 +22,13 @@ public class Decoder {
 		this.treeBuilder = treeBuilder;
 	}
 	
+	/**
+	 * This method decodes a value based on the bits in the bitstream. It traverses the HuffManTree from the root node to the first leaf node, going into the
+	 * left child tree when a 0 is read, the right child tree if a 1 is read.
+	 *   
+	 * @param bitStream the bitstream to read the bits from
+	 * @return an Object value that was decoded from the bitstream
+	 */
 	public Object decodeValue(IBitStream bitStream) {
 		root = treeBuilder.getRoot();
 		TreeNode node = root;
@@ -34,15 +41,15 @@ public class Decoder {
 			}
 		}
 		Leaf leaf = (Leaf)node;
-		leaf.incrementFrequency();
+		treeBuilder.incrementFrequency(leaf);
 		return leaf.getValue();
 	}
 	
 	/**
-	 * Convenience method and not really used in the applications (makes no sense for data to be first processed into array of Objects
-	 * and then written individually to an output stream
-	 * @param bitStream
-	 * @return
+	 * Convenience method and not really used in the applications and then written individually to an output stream
+	 * 
+	 * @param bitStream the bitstream to read from
+	 * @return an Object[] of decoded values
 	 */
 	Object[] decodeValues(IBitStream bitStream) {
 		List<Object> values = new LinkedList<>();

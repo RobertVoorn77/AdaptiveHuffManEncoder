@@ -24,7 +24,7 @@ public class DecoderTest {
 	}
 
 	@Test
-	public void testDecodeValueB_once() {
+	public void testDecodeValueB() {
 		// when
 		IBitStream bitStream = new BitStreamTestHelper("11");
 		Object result = decoder.decodeValue(bitStream);
@@ -42,7 +42,7 @@ public class DecoderTest {
 		Object[] result = decoder.decodeValues(bitStream);
 
 		// then
-		Object[] expectedValues = new Object[] { "b", "b", "c", "b", "c" };
+		Object[] expectedValues = new Object[] { "b", "c", "c", "b", "c" };
 		String expectedStr = makeStringFromObjects(expectedValues);
 		String resultStr = makeStringFromObjects(result);
 		assertEquals(expectedStr, resultStr);
@@ -57,15 +57,18 @@ public class DecoderTest {
 	}
 
 	@Test
-	public void testEncodeValue_2() {
+	public void testEncodeValue_multipleAs() {
 		// given
-		tree.addValue("d");
+		tree.addValue("a");
+		tree.addValue("a");
+		tree.addValue("a");
+		tree.addValue("a");
 
 		// when
 		IBitStream bitStream = new BitStreamTestHelper("01");
 		Object result = decoder.decodeValue(bitStream);
 
 		// then
-		assertEquals("b", result);
+		assertEquals("c", result);
 	}
 }

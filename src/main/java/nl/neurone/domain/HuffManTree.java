@@ -13,7 +13,9 @@ import java.util.Vector;
  * Generic HuffManTree implementation that will be used by the generic Encoder and Decoder. It provides some methods for adding values
  * as nodes in the tree.
  * TODO: This implementation is suboptimal and quite slow (rebuildTree solution) and should be improved once the experiment has been
- * proven to work 
+ * proven to work
+ * 
+ *  The main part of this class is the RebuildTreemethod.
  * @author Robert Voorn
  *
  */
@@ -54,7 +56,20 @@ public class HuffManTree {
 		return leafsMap.get(value);
 	}
 	
-	protected TreeNode rebuildTree() {
+	/**
+	 * As mentioned above, this is the most important part of this class. The goal is to combine all the know leafs (values) in such a way that a balanced tree is created based
+	 * on the frequency of the leafs/nodes. The algorithm works as follows:
+	 * 
+	 * 1. make a list of all leafs
+	 * 2. sort the list based on the frequencies
+	 * 3. take the 2 elements with the lowest frequency
+	 * 4. combine this leafs/nodes into a TreeNode (left child always has the lowest frequency)
+	 * 5. add the new node to the list
+	 * 6. repeat until the list contains just one node (this will be the root node of the binary tree)
+	 * 
+	 * @return root node of the binary tree
+	 */
+	public TreeNode rebuildTree() {
 		List<TreeNode> tree = new Vector<>();
 		tree.addAll(leafs);
 		while (tree.size() > 1) {
@@ -72,6 +87,7 @@ public class HuffManTree {
 		}
 		Iterator<TreeNode> it = tree.iterator();
 		root = it.next();
+//		System.out.println("Tree: " + methodName + " --> " + root.getString());
 		return root;
 	}
 
@@ -92,6 +108,16 @@ public class HuffManTree {
 
 	public void addValue(Object value) {
 		addTreeNode(new Leaf(value));
+		rebuildTree();
+	}
+
+	/**
+	 * Increment the frequency for a specific value (Leaf) and recalculate the tree so the changes are propagated through the HuffManTree
+	 * 
+	 * @param leaf the Leaf containing the value which frequency should be incremented
+	 */
+	public void incrementFrequency(Leaf leaf) {
+		leaf.incrementFrequency();
 		rebuildTree();
 	}
 }

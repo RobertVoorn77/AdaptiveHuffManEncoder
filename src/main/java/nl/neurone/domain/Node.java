@@ -1,5 +1,11 @@
 package nl.neurone.domain;
 
+/**
+ * This class is used to combine leafs and other nodes into a balanced binary tree (HuffManTree). The most important part of this class is the compareTo method.
+ *  
+ * @author Robert Voorn
+ *
+ */
 public class Node implements TreeNode {
 	TreeNode left = null;
 	TreeNode right = null;
@@ -28,6 +34,10 @@ public class Node implements TreeNode {
 		return "( " + left.getString() + " <- " + getFrequency() + " -> " + right.getString() + " )";
 	}
 
+	/**
+	 * This is the most important part of this class. The compareTo method compares 2 nodes (Leaf or Node) based on the frequency
+	 * 
+	 */
 	@Override
 	public int compareTo(Object that) {
 		if (that == null) {
