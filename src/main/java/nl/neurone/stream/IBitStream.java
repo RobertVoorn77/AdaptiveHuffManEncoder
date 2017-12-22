@@ -1,8 +1,15 @@
 package nl.neurone.stream;
 
 public interface IBitStream {
-	public boolean readBit();
-	public void writeBit(boolean bit);
-	public void reset();
-	public boolean isEOF();
+	boolean readBit();
+	void writeBit(boolean bit);
+	void reset();
+	boolean isEOF();
+	long size();
+	void writeByte(byte b);
+	void writeLong(long l);
+	byte readByte();
+	long readLong();
+
+	void close();
 }

@@ -11,7 +11,7 @@ public class BitStreamTestHelper implements IBitStream {
 	
 	public BitStreamTestHelper(String bits) {
 		this.bits = bits.toCharArray();
-		bitsList = new LinkedList<Character>();
+		bitsList = new LinkedList<>();
 		for (char bit : this.bits) {
 			bitsList.add(bit);
 		}
@@ -39,12 +39,42 @@ public class BitStreamTestHelper implements IBitStream {
 	@Override
 	public void reset() {
 		index = 0;
-		bitsList = new LinkedList<Character>();
+		bitsList = new LinkedList<>();
 	}
 
 	@Override
 	public boolean isEOF() {
 		return index == bitsList.size();
+	}
+
+	@Override
+	public long size() {
+		return 0;
+	}
+
+	@Override
+	public void writeByte(byte b) {
+
+	}
+
+	@Override
+	public void writeLong(long l) {
+
+	}
+
+	@Override
+	public byte readByte() {
+		return 0;
+	}
+
+	@Override
+	public long readLong() {
+		return 0;
+	}
+
+	@Override
+	public void close() {
+
 	}
 
 	public String getResultString() {
