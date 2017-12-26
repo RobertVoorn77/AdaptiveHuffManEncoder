@@ -68,7 +68,7 @@ public class BitOutputStreamFile implements IBitStream {
         buffer.putLong(l);
         for (int i = 0 ; i < Long.BYTES; i++) {
             byte b = buffer.get(i);
-            System.out.println("byte[" + i + "]=" + b);
+//            System.out.println("byte[" + i + "]=" + b);
             writeByte(b);
         }
     }

@@ -96,7 +96,7 @@ public class BitInputStreamFile implements IBitStream {
 		byte[] bytes = new byte[Long.BYTES];
 		for (int i = 0; i < Long.BYTES; i++) {
 			byte b = readByte();
-			System.out.println("read byte[" + i + "]=" + b);
+//			System.out.println("read byte[" + i + "]=" + b);
 			bytes[i] = b;
 		}
 		ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);

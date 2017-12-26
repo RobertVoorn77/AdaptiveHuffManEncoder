@@ -44,7 +44,7 @@ public class Node implements TreeNode {
 			return -1;
 		} else {
 			Long thatFrequency = ((TreeNode)that).getFrequency();
-			Long thisFrequency = new Long(getFrequency());
+			Long thisFrequency = getFrequency();
 			return thisFrequency.compareTo(thatFrequency);
 		}
 	}
