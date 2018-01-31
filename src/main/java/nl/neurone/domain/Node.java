@@ -10,16 +10,18 @@ public class Node implements TreeNode {
 	TreeNode left = null;
 	TreeNode right = null;
 	TreeNode parent;
+	Long frequency = null;
 	
 	public Node(TreeNode left, TreeNode right) {
 		this.left = left;
 		this.right = right;
 		this.left.setParent(this);
 		this.right.setParent(this);
+		frequency = left.getFrequency() + right.getFrequency();
 	}
 
 	public Long getFrequency() {
-		return left.getFrequency() + right.getFrequency();
+		return frequency;
 	}
 	
 	public TreeNode getLeft() {
