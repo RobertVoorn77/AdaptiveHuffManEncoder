@@ -8,7 +8,7 @@ import java.util.Date;
 import nl.neurone.component.CharacterEncoder;
 import nl.neurone.stream.BitOutputStreamFile;
 
-public class CharacterFileEncoder {
+class CharacterFileEncoder {
 	private CharacterEncoder encoder;
     private BitOutputStreamFile bitOutputStream;
 

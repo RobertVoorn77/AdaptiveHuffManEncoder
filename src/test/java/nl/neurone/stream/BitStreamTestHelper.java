@@ -78,11 +78,11 @@ public class BitStreamTestHelper implements IBitStream {
 	}
 
 	public String getResultString() {
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		for (Character bit : bitsList) {
-			result += bit;
+			result.append(bit);
 		}
-		return result;
+		return result.toString();
 	}
 	
 	@Override

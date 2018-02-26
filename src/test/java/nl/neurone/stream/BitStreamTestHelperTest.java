@@ -24,12 +24,12 @@ public class BitStreamTestHelperTest {
 	}
 
 	private String getRandomBinaryString() {
-		String bitStreamString = "";
+		StringBuilder bitStreamString = new StringBuilder();
 		Random random = new Random();
 		for (int i=0; i < 20; i++) {
-		    bitStreamString += random.nextBoolean() ? "1" : "0";
+		    bitStreamString.append(random.nextBoolean() ? "1" : "0");
 		}
-		return bitStreamString;
+		return bitStreamString.toString();
 	}
 	
 	@Test

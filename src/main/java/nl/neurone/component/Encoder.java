@@ -14,7 +14,7 @@ import nl.neurone.stream.IBitStream;
 public class Encoder {
 	private HuffManTree treeBuilder;
 	private TreeNode root;
-	private IBitStream bitStream;
+	private final IBitStream bitStream;
 
 	public Encoder(IBitStream bitStream) {
 		this.bitStream = bitStream;

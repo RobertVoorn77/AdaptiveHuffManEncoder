@@ -13,9 +13,9 @@ import java.util.*;
  *
  */
 public class HuffManTree {
-	private Set<TreeNode> treeNodes = null; 
-	private Set<TreeNode> leafs = null; 
-	private Map<Object, Leaf> leafsMap = null;
+	private Set<TreeNode> treeNodes;
+	private Set<TreeNode> leafs;
+	private Map<Object, Leaf> leafsMap;
 	private TreeNode root; 
 	
 	public HuffManTree() {
@@ -24,11 +24,11 @@ public class HuffManTree {
 		leafsMap = new TreeMap<>();
 	}
 	
-	protected void addInternalTreeNode(TreeNode node) {
+	void addInternalTreeNode(TreeNode node) {
 		treeNodes.add(node);
 	}
 
-	protected void addTreeNode(TreeNode node) {
+	void addTreeNode(TreeNode node) {
 		if (node instanceof Leaf) {
 			leafs.add(node);
 			Leaf leaf = (Leaf) node;
@@ -41,7 +41,7 @@ public class HuffManTree {
 		return treeNodes;
 	}
 	
-	protected Set<TreeNode> getleafs() {
+	Set<TreeNode> getleafs() {
 		return leafs;
 	}
 	
@@ -106,13 +106,7 @@ public class HuffManTree {
     }
 
     private void sortTree(List<TreeNode> tree) {
-		tree.sort(new Comparator<TreeNode>() {
-
-			@Override
-			public int compare(TreeNode a, TreeNode b) {
-				return a.getFrequency().compareTo(b.getFrequency());
-			}
-		});
+		tree.sort((a, b) -> a.getFrequency().compareTo(b.getFrequency()));
 	}
 
 	public TreeNode getRoot() {

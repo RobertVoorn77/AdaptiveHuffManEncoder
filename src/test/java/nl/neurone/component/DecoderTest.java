@@ -49,11 +49,11 @@ public class DecoderTest {
 	}
 
 	private String makeStringFromObjects(Object[] expectedValues) {
-		String resultStr = "";
+		StringBuilder resultStr = new StringBuilder();
 		for (Object o : expectedValues) {
-			resultStr += (String) o;
+			resultStr.append((String) o);
 		}
-		return resultStr;
+		return resultStr.toString();
 	}
 
 	@Test

@@ -11,8 +11,8 @@ import java.io.OutputStream;
  */
 class BitOutputStream {
 
-    private OutputStream out;
-    private boolean[] buffer = new boolean[8];
+    private final OutputStream out;
+    private final boolean[] buffer = new boolean[8];
     private int count = 0;
 
     public BitOutputStream(OutputStream out) {

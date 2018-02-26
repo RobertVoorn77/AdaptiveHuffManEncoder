@@ -11,7 +11,7 @@ import java.io.InputStream;
  */
 class BitInputStream {
 
-    private InputStream in;
+    private final InputStream in;
     private int num = 0;
     private int count = 8;
 

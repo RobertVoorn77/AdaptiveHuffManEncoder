@@ -8,9 +8,9 @@ package nl.neurone.domain;
  *
  */
 public class Leaf implements TreeNode {
-	Object value;
-	Long frequency;
-	TreeNode parent;
+	private final Object value;
+	private Long frequency;
+	private TreeNode parent;
 
 	Leaf(Object value, long frequency) {
 		this.value = value;
@@ -25,7 +25,7 @@ public class Leaf implements TreeNode {
 		return value;
 	}
 		
-	void setFrequency(long f) {
+	private void setFrequency(long f) {
 		frequency = f;
 	}
 	
