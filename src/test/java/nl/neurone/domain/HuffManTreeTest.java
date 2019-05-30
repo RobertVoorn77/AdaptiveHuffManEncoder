@@ -6,11 +6,6 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import nl.neurone.domain.HuffManTree;
-import nl.neurone.domain.Leaf;
-import nl.neurone.domain.Node;
-import nl.neurone.domain.TreeNode;
-
 public class HuffManTreeTest {
 	
 	@Test
@@ -29,7 +24,7 @@ public class HuffManTreeTest {
 		
 		// then
 		assertEquals(3, resultNodes.size());
-		TreeNode[] nodes = (TreeNode[]) resultNodes.toArray(new TreeNode[resultNodes.size()]);
+		TreeNode[] nodes = resultNodes.toArray(new TreeNode[0]);
 		assertEquals(l, nodes[0]);
 		assertEquals(r, nodes[1]);
 		assertEquals(n, nodes[2]);
@@ -58,7 +53,7 @@ public class HuffManTreeTest {
 		
 		// then
 		assertEquals(3, resultNodes.size());
-		TreeNode[] nodes = (TreeNode[]) resultNodes.toArray(new TreeNode[resultNodes.size()]);
+		TreeNode[] nodes = resultNodes.toArray(new TreeNode[0]);
 		assertEquals(l, nodes[0]);
 		assertEquals(r, nodes[1]);
 		assertEquals(n, nodes[2]);
@@ -77,18 +72,18 @@ public class HuffManTreeTest {
 		
 		// when
 		Set<TreeNode> resultNodes = helper.getTreeNodes();
-		Set<TreeNode> resultLeafs = helper.getleafs();
+		Set<TreeNode> resultLeafs = helper.getLeafs();
 		Object resultValue = helper.getLeafByValue(l.getValue());
 		
 		// then
 		assertEquals(3, resultNodes.size());
-		TreeNode[] nodes = (TreeNode[]) resultNodes.toArray(new TreeNode[resultNodes.size()]);
+		TreeNode[] nodes = resultNodes.toArray(new TreeNode[0]);
 		assertEquals(l, nodes[0]);
 		assertEquals(r, nodes[1]);
 		assertEquals(n, nodes[2]);
 		
 		assertEquals(2, resultLeafs.size());
-		TreeNode[] leafs = (TreeNode[]) resultLeafs.toArray(new TreeNode[resultLeafs.size()]);
+		TreeNode[] leafs = resultLeafs.toArray(new TreeNode[0]);
 		assertEquals(l, leafs[0]);
 		assertEquals(r, leafs[1]);
 		

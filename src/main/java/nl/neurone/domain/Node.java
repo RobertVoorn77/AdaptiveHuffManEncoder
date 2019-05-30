@@ -7,10 +7,10 @@ package nl.neurone.domain;
  *
  */
 public class Node implements TreeNode {
-	private TreeNode left;
-	private TreeNode right;
+	private final TreeNode left;
+	private final TreeNode right;
 	private TreeNode parent;
-	private Long frequency;
+	private final Long frequency;
 	
 	public Node(TreeNode left, TreeNode right) {
 		this.left = left;

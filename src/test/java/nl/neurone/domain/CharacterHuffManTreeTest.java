@@ -13,7 +13,7 @@ public class CharacterHuffManTreeTest {
 		
 		// when / then
 		for (char i = 1; i <= 255; i++) {
-			Leaf leafByValue = tree.getLeafByValue(i);
+			TreeNode leafByValue = tree.getLeafByValue(i);
 			assertNotNull(leafByValue);
 		}
 	}

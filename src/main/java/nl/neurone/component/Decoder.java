@@ -16,9 +16,8 @@ import nl.neurone.stream.IBitStream;
  */
 public class Decoder {
 	private HuffManTree treeBuilder;
-	private TreeNode root;
 
-	public void setHuffManTree(HuffManTree treeBuilder) {
+	void setHuffManTree(HuffManTree treeBuilder) {
 		this.treeBuilder = treeBuilder;
 	}
 	
@@ -30,8 +29,7 @@ public class Decoder {
 	 * @return an Object value that was decoded from the bitstream
 	 */
 	public Object decodeValue(IBitStream bitStream) {
-		root = treeBuilder.getRoot();
-		TreeNode node = root;
+		TreeNode node = treeBuilder.getRoot();
 
 		while (!(node instanceof Leaf)) {
 			if (bitStream.readBit()) {

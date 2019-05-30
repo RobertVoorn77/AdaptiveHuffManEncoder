@@ -30,7 +30,6 @@ public class BitStreamFileTest {
         // when
         for (long l = -100; l < 200; l += 20) {
             // write long
-            System.out.println("Testing long: " + l);
             bOutput = new BitOutputStreamFile("./testData/testBytes.dat");
             bOutput.writeLong(l);
             bOutput.close();

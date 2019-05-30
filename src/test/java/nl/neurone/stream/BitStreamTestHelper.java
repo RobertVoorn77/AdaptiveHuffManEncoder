@@ -5,9 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BitStreamTestHelper implements IBitStream {
-	private char[] bits = null;
+	private char[] bits;
 	private int index = 0;
-	private List<Character> bitsList = null;
+	private List<Character> bitsList;
 	
 	public BitStreamTestHelper(String bits) {
 		this.bits = bits.toCharArray();

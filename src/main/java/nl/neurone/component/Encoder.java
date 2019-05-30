@@ -35,7 +35,7 @@ public class Encoder {
 	 * @return String this string should not be used and is primarily for testing purposes
 	 */
 	public String encodeValue(Object value) {
-		TreeNode leaf = (TreeNode) treeBuilder.getLeafByValue(value);
+		TreeNode leaf = treeBuilder.getLeafByValue(value);
 		root = treeBuilder.getRoot();
 		String encodeValueStr = encodeValueStr(leaf);
 		// after encoding is finished, update the frequency if the initial value was a leaf (nodes will be recalculated when rebuilding the tree)

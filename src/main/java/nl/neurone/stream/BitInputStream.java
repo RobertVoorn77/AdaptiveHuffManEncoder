@@ -9,7 +9,7 @@ import java.io.InputStream;
  * from the Internet https://stackoverflow.com/questions/4220917/is-it-possible-to-read-write-bits-from-a-file-using-java
  *
  */
-class BitInputStream {
+class BitInputStream implements AutoCloseable {
 
     private final InputStream in;
     private int num = 0;

@@ -8,14 +8,14 @@ import java.util.*;
  * TODO: This implementation is suboptimal and quite slow (rebuildTree solution) and should be improved once the experiment has been
  * proven to work
  * 
- *  The main part of this class is the RebuildTreemethod.
+ *  The main part of this class is the RebuildTree method.
  * @author Robert Voorn
  *
  */
 public class HuffManTree {
-	private Set<TreeNode> treeNodes;
-	private Set<TreeNode> leafs;
-	private Map<Object, Leaf> leafsMap;
+	private final Set<TreeNode> treeNodes;
+	private final Set<TreeNode> leafs;
+	private final Map<Object, Leaf> leafsMap;
 	private TreeNode root; 
 	
 	public HuffManTree() {
@@ -41,11 +41,11 @@ public class HuffManTree {
 		return treeNodes;
 	}
 	
-	Set<TreeNode> getleafs() {
+	Set<TreeNode> getLeafs() {
 		return leafs;
 	}
 	
-	public Leaf getLeafByValue(Object value) {
+	public TreeNode getLeafByValue(Object value) {
 		return leafsMap.get(value);
 	}
 	
@@ -63,8 +63,7 @@ public class HuffManTree {
 	 * @return root node of the binary tree
 	 */
 	public TreeNode rebuildTree() {
-		List<TreeNode> tree = new Vector<>();
-		tree.addAll(leafs);
+		List<TreeNode> tree = new ArrayList<>(leafs);
 		while (tree.size() > 1) {
             // sort all nodes on frequency (ascending)
             sortTree(tree);
@@ -106,7 +105,7 @@ public class HuffManTree {
     }
 
     private void sortTree(List<TreeNode> tree) {
-		tree.sort((a, b) -> a.getFrequency().compareTo(b.getFrequency()));
+		tree.sort(Comparator.comparing(TreeNode::getFrequency));
 	}
 
 	public TreeNode getRoot() {

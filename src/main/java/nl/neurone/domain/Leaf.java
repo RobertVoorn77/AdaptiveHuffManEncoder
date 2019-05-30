@@ -39,7 +39,7 @@ public class Leaf implements TreeNode {
 
 	
 	/**
-	 * This method will compare 2 leafs of treenodes based on:
+	 * This method will compare 2 leafs of tree nodes based on:
 	 * 1. the frequency
 	 * 2. if the frequencies are equal the comparison will be done on the value itself
 	 * 
@@ -72,7 +72,7 @@ public class Leaf implements TreeNode {
 		return parent;
 	}
 
-	public void incrementFrequency() {
+	void incrementFrequency() {
 		frequency++;
 	}
 }
