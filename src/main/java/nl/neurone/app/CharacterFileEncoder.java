@@ -33,6 +33,7 @@ class CharacterFileEncoder {
         System.out.println("Size from filesystem: " + new File(fileName).length());
 
         double encodedSize = 0;
+        int quarterSize = (int) (encodedSize / 4);
         System.out.println("Start: " + new Date());
         Instant start = Instant.now();
         bitOutputStream.writeLong((long) actualSize);
@@ -40,7 +41,8 @@ class CharacterFileEncoder {
         try (BufferedReader is = new BufferedReader(new FileReader(fileName));
             BufferedWriter os = new BufferedWriter((new FileWriter(fileName + ".copy")))) {
 
-            while (is.ready()) {
+            int decounter = (int) actualSize;
+            while (decounter-- > 0) {
                 char c = (char)is.read();
                 encoder.encodeValue(c);
                 counter++;
