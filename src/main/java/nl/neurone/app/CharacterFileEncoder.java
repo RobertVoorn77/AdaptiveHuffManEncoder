@@ -26,14 +26,13 @@ class CharacterFileEncoder {
     }
 
     private void encodeFile(String fileName) {
-        double actualSize = scanActualSize(new File(fileName));
+        double actualSize = new File(fileName).length();
         long counter = 0;
         System.out.println("Started encoding file: " + fileName);
         System.out.println("Size actual: " + actualSize);
         System.out.println("Size from filesystem: " + new File(fileName).length());
 
         double encodedSize = 0;
-        int quarterSize = (int) (encodedSize / 4);
         System.out.println("Start: " + new Date());
         Instant start = Instant.now();
         bitOutputStream.writeLong((long) actualSize);
@@ -58,20 +57,5 @@ class CharacterFileEncoder {
             e.printStackTrace();
         }
         System.out.println(String.format("Ratio: %.2f", (encodedSize / actualSize) * 100.0));  // 64,24% on testFile.txt --> Took seconds: PT56M28.696S
-    }
-
-    private double scanActualSize(File file) {
-        double size = 0.0;
-        try (BufferedReader is = new BufferedReader(new FileReader(file))) {
-
-            while (is.ready()) {
-                is.read();
-                size++;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return size;
     }
 }

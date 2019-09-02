@@ -37,7 +37,7 @@ public class HuffManTree {
 		addInternalTreeNode(node);
 	}
 	
-	public Set<TreeNode> getTreeNodes() {
+	Set<TreeNode> getTreeNodes() {
 		return treeNodes;
 	}
 	
@@ -62,7 +62,7 @@ public class HuffManTree {
 	 * 
 	 * @return root node of the binary tree
 	 */
-	public TreeNode rebuildTree() {
+	TreeNode rebuildTree() {
 		List<TreeNode> tree = new ArrayList<>(leafs);
 		while (tree.size() > 1) {
             // sort all nodes on frequency (ascending)
@@ -84,25 +84,25 @@ public class HuffManTree {
 		return root;
 	}
 
-    private void addSorted(List<TreeNode> tree, Node newNode) {
-	    if (tree.size() == 0) {
-	        // empty list is already sorted , so just add the new node!
-            tree.add(newNode);
-	        return;
-        }
-	    Iterator it = tree.iterator();
-	    int index = 0;
-//	    while (it.hasNext() && index<tree.size()) {
-        while (it.hasNext()) {
-	        TreeNode current = (TreeNode) it.next();
-	        index++;
-	        if (newNode.compareTo(current) == 0) {
-	            // stop when an equal is found and add new node there!
-                tree.add(index, newNode);
-                return;
-            }
-        }
-    }
+//    private void addSorted(List<TreeNode> tree, Node newNode) {
+//	    if (tree.size() == 0) {
+//	        // empty list is already sorted , so just add the new node!
+//            tree.add(newNode);
+//	        return;
+//        }
+//	    Iterator it = tree.iterator();
+//	    int index = 0;
+////	    while (it.hasNext() && index<tree.size()) {
+//        while (it.hasNext()) {
+//	        TreeNode current = (TreeNode) it.next();
+//	        index++;
+//	        if (newNode.compareTo(current) == 0) {
+//	            // stop when an equal is found and add new node there!
+//                tree.add(index, newNode);
+//                return;
+//            }
+//        }
+//    }
 
     private void sortTree(List<TreeNode> tree) {
 		tree.sort(Comparator.comparing(TreeNode::getFrequency));

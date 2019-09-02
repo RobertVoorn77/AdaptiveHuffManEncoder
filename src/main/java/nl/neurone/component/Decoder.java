@@ -51,7 +51,7 @@ public class Decoder {
 	 */
 	Object[] decodeValues(IBitStream bitStream) {
 		List<Object> values = new LinkedList<>();
-		
+
 		while (!bitStream.isEOF()) {
 			Object value = decodeValue(bitStream);
 			values.add(value);
@@ -60,7 +60,7 @@ public class Decoder {
 		return values.toArray();
 	}
 
-	public HuffManTree getHuffManTree() {
+	HuffManTree getHuffManTree() {
 		return treeBuilder;
 	}
 }
