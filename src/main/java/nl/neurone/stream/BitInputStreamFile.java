@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-public class BitInputStreamFile implements IBitStream {
+public class BitInputStreamFile implements IBitInputStream {
 	private BitInputStream bitInputStream;
 	private FileInputStream is;
 	
@@ -27,23 +27,10 @@ public class BitInputStreamFile implements IBitStream {
 		}
 		return false;
 	}
-	
-	public void writeBit(boolean bit) {
-		// should not be used for input stream
-		throw new RuntimeException("You can not call writeBit from an input stream, use BitOutputStream instead");
-	}
-	
-	public void reset() {
-		try {
-			is.reset();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	/** TODO: make a some rigorous test cases for this method
 	 * works for my current small test files, but implementation does certainly not work for all files
-	 * as it does not take the all the bits into account (the bits in the last byte could be skipped and the file terminated too early 
+	 * as it does not take the all the bits into account (the bits in the last byte could be skipped and the file terminated too early
 	 */
 	public boolean isEOF() {
 		try {
@@ -52,28 +39,6 @@ public class BitInputStreamFile implements IBitStream {
 			e.printStackTrace();
 		}
 		return false;
-	}
-
-	@Override
-	public long size() {
-		try {
-			return is.getChannel().size();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return 0;
-	}
-
-	@Override
-	public void writeByte(byte b) {
-		// should not be used for input stream
-		throw new RuntimeException("You can not call writeByte from an input stream, use BitOutputStream instead");
-	}
-
-	@Override
-	public void writeLong(long l) {
-		// should not be used for input stream
-		throw new RuntimeException("You can not call writeLong from an input stream, use BitOutputStream instead");
 	}
 
 	@Override
@@ -96,7 +61,6 @@ public class BitInputStreamFile implements IBitStream {
 		byte[] bytes = new byte[Long.BYTES];
 		for (int i = 0; i < Long.BYTES; i++) {
 			byte b = readByte();
-//			System.out.println("read byte[" + i + "]=" + b);
 			bytes[i] = b;
 		}
 		ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);

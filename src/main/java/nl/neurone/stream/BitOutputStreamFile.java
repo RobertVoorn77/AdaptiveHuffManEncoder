@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-public class BitOutputStreamFile implements IBitStream {
+public class BitOutputStreamFile implements IBitOutputStream {
     private BitOutputStream bitOutputStream;
     private FileOutputStream os;
 
@@ -17,11 +17,6 @@ public class BitOutputStreamFile implements IBitStream {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    public boolean readBit() {
-        // should not be used for output stream
-        throw new RuntimeException("You can not call readBit from an output stream, use BitInputStream instead");
     }
 
     public void writeBit(boolean bit) {
@@ -68,21 +63,8 @@ public class BitOutputStreamFile implements IBitStream {
         buffer.putLong(l);
         for (int i = 0 ; i < Long.BYTES; i++) {
             byte b = buffer.get(i);
-//            System.out.println("byte[" + i + "]=" + b);
             writeByte(b);
         }
-    }
-
-    @Override
-    public byte readByte() {
-        // should not be used for output stream
-        throw new RuntimeException("You can not call readByte from an output stream, use BitInputStream instead");
-    }
-
-    @Override
-    public long readLong() {
-        // should not be used for output stream
-        throw new RuntimeException("You can not call readLong from an output stream, use BitInputStream instead");
     }
 
     @Override

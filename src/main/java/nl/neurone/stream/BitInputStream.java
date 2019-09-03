@@ -15,7 +15,7 @@ class BitInputStream implements AutoCloseable {
     private int num = 0;
     private int count = 8;
 
-    public BitInputStream(InputStream in) {
+    BitInputStream(InputStream in) {
         this.in = in;
     }
 
