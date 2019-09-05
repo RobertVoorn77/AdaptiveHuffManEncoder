@@ -1,12 +1,7 @@
 package nl.neurone.stream;
 
-public interface IBitOutputStream {
+public interface IBitOutputStream extends AutoCloseable {
 	void writeBit(boolean bit);
-	void reset();
-	boolean isEOF();
-
-	void writeByte(byte b);
 	void writeLong(long l);
-
 	void close();
 }

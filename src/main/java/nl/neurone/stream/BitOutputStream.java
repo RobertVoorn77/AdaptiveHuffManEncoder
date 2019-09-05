@@ -1,48 +1,74 @@
 package nl.neurone.stream;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.ByteBuffer;
 
-/**
- *  'Borrowed' due to time constraints 
- *  TODO: implement my own version and add unit tests for that 
- *  from the Internet https://stackoverflow.com/questions/4220917/is-it-possible-to-read-write-bits-from-a-file-using-java
- *
- */
-class BitOutputStream implements AutoCloseable {
+public class BitOutputStream implements IBitOutputStream {
+    private final OutputStream outputStream;
+    private final boolean[] buffer;
+    private int count;
 
-    private final OutputStream out;
-    private final boolean[] buffer = new boolean[8];
-    private int count = 0;
-
-    public BitOutputStream(OutputStream out) {
-        this.out = out;
+    BitOutputStream(OutputStream outputStream) {
+        this.outputStream = outputStream;
+        this.buffer = new boolean[8];
+        this.count = 0;
     }
 
-    public void write(boolean x) throws IOException {
+    @Override
+    public void writeBit(boolean bit) {
         this.count++;
-        this.buffer[8-this.count] = x;
-        if (this.count == 8){
-            int num = 0;
-            for (int index = 0; index < 8; index++){
-                num = 2*num + (this.buffer[index] ? 1 : 0);
-            }
-
-            this.out.write(num - 128);
-
-            this.count = 0;
+        this.buffer[8-this.count] = bit;
+        if (this.count == 8) {
+            flushBitBuffer();
         }
     }
 
-    public void close() throws IOException {
+    private void flushBitBuffer() {
         int num = 0;
-        for (int index = 0; index < 8; index++){
-            num = 2*num + (this.buffer[index] ? 1 : 0);
+        for (int index = 0; index < 8; index++) {
+            num = 2 * num + (this.buffer[index] ? 1 : 0);
         }
 
-        this.out.write(num - 128);
+        try {
+            this.outputStream.write(num - 128);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        this.out.close();
+        this.count = 0;
     }
 
+    private void writeByte(byte b) {
+        int mask = 1;
+        // turn the signed 8 bit byte into a unsigned integer
+        int bi = b - Byte.MIN_VALUE;
+        for (int i = 0; i < 8; i++) {
+            boolean bit = (bi & mask) > 0;
+            writeBit(bit);
+            mask *= 2;
+        }
+    }
+
+    @Override
+    public void writeLong(long l) {
+        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
+        buffer.putLong(l);
+        for (int i = 0 ; i < Long.BYTES; i++) {
+            byte b = buffer.get(i);
+            writeByte(b);
+        }
+    }
+
+    @Override
+    public void close() {
+        try {
+            flushBitBuffer();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
