@@ -1,7 +1,5 @@
 package nl.neurone.stream;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
