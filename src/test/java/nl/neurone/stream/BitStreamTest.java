@@ -13,7 +13,7 @@ public class BitStreamTest {
     public ExpectedException expectedException = ExpectedException.none();
 
     @Test
-    public void testWriteBitsAndLongs() {
+    public void testWriteAndReadBitsAndLongs() {
         // given
         boolean[] bits = initializeBits(3);
         long[] longs = initializeLongs(2);

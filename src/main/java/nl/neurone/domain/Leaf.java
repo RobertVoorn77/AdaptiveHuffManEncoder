@@ -1,15 +1,15 @@
 package nl.neurone.domain;
 
 public class Leaf implements TreeNode {
-    private long frequency;
-    private Object value;
+    long frequency;
+    private char value;
     private TreeNode parent;
 
-    public Leaf(Object value) {
+    public Leaf(char value) {
         this(1, value);
     }
 
-    protected Leaf(long frequency, Object value) {
+    protected Leaf(long frequency, char value) {
         this.frequency = frequency;
         this.value = value;
         this.parent = null;
@@ -31,6 +31,11 @@ public class Leaf implements TreeNode {
     }
 
     @Override
+    public boolean isRoot() {
+        return false;
+    }
+
+    @Override
     public int compareTo(Object o) {
         if (!(o instanceof Leaf)) {
             return -1;
@@ -39,11 +44,12 @@ public class Leaf implements TreeNode {
         return (int) (this.frequency - other.frequency);
     }
 
-    public Object getValue() {
+    public char getValue() {
         return value;
     }
 
-    protected void setValue(Object value) {
+    protected void setValue(char value) {
         this.value = value;
     }
+
 }

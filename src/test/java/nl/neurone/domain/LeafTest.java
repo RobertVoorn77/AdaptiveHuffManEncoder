@@ -6,8 +6,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class LeafTest {
-    private static final String VALUE = "value";
-    private static final String OTHER_VALUE = "other_value";
+    private static final char VALUE = 'v';
+    private static final char OTHER_VALUE = 'o';
     private Leaf leaf;
     private Leaf otherLeaf;
 
@@ -25,7 +25,7 @@ public class LeafTest {
     @Test
     public void setParent() {
         // given
-        final Leaf parent = new Leaf("PARENT");
+        final Leaf parent = new Leaf('p');
 
         // when
         leaf.setParent(parent);
@@ -92,5 +92,10 @@ public class LeafTest {
 
         // then
         assertNotEquals(VALUE, leaf.getValue());
+    }
+
+    @Test
+    public void testIsRoot() {
+        assertFalse(new Leaf((char)1).isRoot());
     }
 }

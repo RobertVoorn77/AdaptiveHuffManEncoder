@@ -7,7 +7,7 @@ public class Node implements TreeNode {
     private TreeNode right;
 
     public Node(TreeNode left, TreeNode right) {
-        this(0, left, right);
+        this(left.getFrequency() + right.getFrequency(), left, right);
     }
 
     protected Node(long frequency, TreeNode left, TreeNode right) {
@@ -16,6 +16,19 @@ public class Node implements TreeNode {
         this.left.setParent(this);
         this.right = right;
         this.right.setParent(this);
+        ensureLeftIsLessFrequent();
+    }
+
+     /* This is done to improve deterministic behaviour of a co
+     *     /**mplete tree which is favourable for debugging, analysing
+     * and unit testing
+     */
+    private void ensureLeftIsLessFrequent() {
+        if (left.getFrequency() > right.getFrequency()) {
+            TreeNode temp = right;
+            right = left;
+            left = temp;
+        }
     }
 
     @Override
@@ -34,6 +47,11 @@ public class Node implements TreeNode {
     }
 
     @Override
+    public boolean isRoot() {
+        return parent == null;
+    }
+
+    @Override
     public int compareTo(Object o) {
         if (!(o instanceof TreeNode)) {
             return -1;
@@ -42,11 +60,11 @@ public class Node implements TreeNode {
         return (int) (this.frequency - other.getFrequency());
     }
 
-    protected TreeNode getLeft() {
+    public TreeNode getLeft() {
         return left;
     }
 
-    protected TreeNode getRight() {
+    public TreeNode getRight() {
         return right;
     }
 }
