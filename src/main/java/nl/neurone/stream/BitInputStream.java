@@ -9,7 +9,7 @@ public class BitInputStream implements IBitInputStream {
     private int num;
     private int count;
 
-    BitInputStream(InputStream inputStream) {
+    public BitInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
         this.num = 0;
         this.count = 8;

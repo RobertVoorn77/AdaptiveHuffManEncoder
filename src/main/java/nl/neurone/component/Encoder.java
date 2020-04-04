@@ -21,6 +21,7 @@ public class Encoder {
     public void encode(char c) {
         TreeNode current = tree.getLeafNode(c);
         encodeRecursive(current);
+        tree.incrementFrequency(c);
     }
 
     private void encodeRecursive(TreeNode current) {

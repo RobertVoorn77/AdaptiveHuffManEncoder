@@ -17,7 +17,7 @@ public class EncoderDecoderTest {
         Encoder enc;
         Decoder dec;
         final Random random = new Random();
-        char[] randomChars = new char[1000];
+        char[] randomChars = new char[100];
         for (int i = 0; i < randomChars.length; i++) {
             randomChars[i] = (char) random.nextInt(255);
         }

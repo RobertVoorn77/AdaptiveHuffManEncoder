@@ -9,7 +9,7 @@ public class BitOutputStream implements IBitOutputStream {
     private final boolean[] buffer;
     private int count;
 
-    BitOutputStream(OutputStream outputStream) {
+    public BitOutputStream(OutputStream outputStream) {
         this.outputStream = outputStream;
         this.buffer = new boolean[8];
         this.count = 0;
