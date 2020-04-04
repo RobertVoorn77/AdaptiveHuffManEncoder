@@ -7,12 +7,10 @@ public class Decoder {
     private IBitInputStream inputStream;
     private HuffmanTree tree;
 
-    public Decoder(IBitInputStream inputStream) {
+    public Decoder(IBitInputStream inputStream, HuffmanTree tree) {
         this.inputStream = inputStream;
-        this.tree = new SimpleHuffmanTree();
-        for (char c = 0; c <= 255; c++) {
-            tree.addValue(c);
-        }
+        this.tree = tree;
+        this.tree.initialize();
     }
 
     public char decode() {

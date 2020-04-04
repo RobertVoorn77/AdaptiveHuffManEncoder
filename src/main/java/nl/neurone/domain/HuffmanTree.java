@@ -16,6 +16,11 @@ public interface HuffmanTree {
     Leaf getLeafNode(char c);
 
     /**
+     * This is used by the encoder and decoder toe create the content of the tree during initialization
+     */
+    void initialize();
+
+    /**
      * Adds a node to the Huffman tree
      * @param c value that needs to be in the Huffman tree for encoding/decoding
      */
@@ -26,4 +31,10 @@ public interface HuffmanTree {
      * @param c the value for which the frequency should be incremented
      */
     void incrementFrequency(char c);
+
+    /**
+     * This method is used by the encoder and decoder when an leaf has been encoded/decoded to update the tree according
+     * to the updated frequencies
+     */
+    void updateTree();
 }

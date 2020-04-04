@@ -1,5 +1,6 @@
 package nl.neurone.component;
 
+import nl.neurone.domain.SimpleHuffmanTree;
 import nl.neurone.stream.IBitOutputStream;
 import org.junit.Test;
 
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
 public class EncoderTest {
 
     @Test
-    public void encode() {
+    public void encode_simpleHuffmanTree() {
         // given
         Map<Character, String> expectedEncoding = new HashMap<>();
         expectedEncoding.put((char) 2, "00000010");
@@ -24,7 +25,7 @@ public class EncoderTest {
         // when & then
         for (Map.Entry<Character, String> entry : expectedEncoding.entrySet()) {
             final BitOutputStreamTester outputStream = new BitOutputStreamTester();
-            Encoder enc = new Encoder(outputStream);
+            Encoder enc = new Encoder(outputStream, new SimpleHuffmanTree());
             enc.encode(entry.getKey());
             String encodedBits = outputStream.getBits();
             assertEquals(entry.getValue(), encodedBits);

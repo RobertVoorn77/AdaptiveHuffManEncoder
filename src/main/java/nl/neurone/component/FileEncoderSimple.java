@@ -1,18 +1,19 @@
 package nl.neurone.component;
 
+import nl.neurone.domain.SimpleHuffmanTree;
 import nl.neurone.stream.BitOutputStream;
 
 import java.io.*;
 import java.nio.charset.Charset;
 
-public class FileEncoder {
+public class FileEncoderSimple {
     private Encoder enc;
 
-    public FileEncoder(String inputFileName, String outputFilename) throws IOException {
+    public FileEncoderSimple(String inputFileName, String outputFilename) throws IOException {
         Charset encoding = Charset.defaultCharset();
         final File outputFile = new File(outputFilename);
         final BitOutputStream outputStream = new BitOutputStream(new FileOutputStream(outputFile));
-        enc = new Encoder(outputStream);
+        enc = new Encoder(outputStream, new SimpleHuffmanTree());
         File inputFile = new File(inputFileName);
         long fileSize = inputFile.length();
         PerformanceHelper helper = new PerformanceHelper(fileSize);
@@ -37,7 +38,7 @@ public class FileEncoder {
 
     public static void main(String[] args) {
         try {
-            new FileEncoder(args[0], args[1]);
+            new FileEncoderSimple(args[0], args[1]);
         } catch (IOException e) {
             e.printStackTrace();
         }

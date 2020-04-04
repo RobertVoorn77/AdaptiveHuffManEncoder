@@ -19,8 +19,8 @@ public class Node implements TreeNode {
         ensureLeftIsLessFrequent();
     }
 
-     /* This is done to improve deterministic behaviour of a co
-     *     /**mplete tree which is favourable for debugging, analysing
+    /**
+     * This is done to improve deterministic behaviour of a complete tree which is favourable for debugging, analysing
      * and unit testing
      */
     private void ensureLeftIsLessFrequent() {

@@ -44,4 +44,23 @@ public class SimpleHuffmanTreeTest {
         assertEquals('s', ((Leaf)right.getLeft()).getValue());
         assertEquals('t', ((Leaf)right.getRight()).getValue());
     }
+
+    @Test
+    public void testInitialize() {
+        // given
+        HuffmanTree tree = new SimpleHuffmanTree();
+        assertNull(tree.getRoot());
+
+        // when
+        tree.initialize();
+
+        // then
+        assertNotNull(tree.getRoot());
+        assertEquals(256, tree.getRoot().getFrequency());
+        for (int i = 0; i <= 255; i++) {
+            Leaf leaf = tree.getLeafNode((char)i);
+            assertNotNull(leaf);
+            assertEquals((char)i, leaf.getValue());
+        }
+    }
 }
