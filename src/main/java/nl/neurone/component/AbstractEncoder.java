@@ -6,16 +6,16 @@ import nl.neurone.domain.SimpleHuffmanTree;
 import nl.neurone.domain.TreeNode;
 import nl.neurone.stream.IBitOutputStream;
 
-public class Encoder {
-    private IBitOutputStream outputStream;
-    private HuffmanTree tree;
+public class AbstractEncoder {
+    protected IBitOutputStream outputStream;
+    protected HuffmanTree tree;
 
-    public Encoder(IBitOutputStream outputStream) {
+    public AbstractEncoder() {
+    }
+
+    public AbstractEncoder(IBitOutputStream outputStream) {
         this.outputStream = outputStream;
         this.tree = new SimpleHuffmanTree();
-        for (char c = 0; c <= 255; c++) {
-            tree.addValue(c);
-        }
     }
 
     public void encode(char c) {
@@ -24,7 +24,7 @@ public class Encoder {
         tree.incrementFrequency(c);
     }
 
-    private void encodeRecursive(TreeNode current) {
+    protected void encodeRecursive(TreeNode current) {
         if (current.isRoot()) {
             return;
         }

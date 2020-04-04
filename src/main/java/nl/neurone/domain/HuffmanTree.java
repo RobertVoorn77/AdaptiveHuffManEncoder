@@ -32,4 +32,9 @@ public interface HuffmanTree {
      * to the updated frequencies
      */
     void updateTree();
+
+    /**
+     * This method can be used to add a leaf object to the tree
+     */
+    void addLeaf(AbstractLeaf leaf);
 }

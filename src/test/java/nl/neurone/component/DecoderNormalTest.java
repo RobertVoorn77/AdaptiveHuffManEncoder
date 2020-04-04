@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class DecoderTest {
+public class DecoderNormalTest {
 
     @Test
     public void decode() {
@@ -24,7 +24,7 @@ public class DecoderTest {
         // when & then
         for (Map.Entry<String, Character> entry : expectedEncoding.entrySet()) {
             final BitInputStreamTester inputStream = new BitInputStreamTester();
-            Decoder dec = new Decoder(inputStream);
+            DecoderNormal dec = new DecoderNormal(inputStream);
             inputStream.setBits(entry.getKey());
             Character decoded = dec.decode();
             System.out.println("entry.value: " + entry.getValue());

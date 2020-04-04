@@ -3,27 +3,29 @@ package nl.neurone.component;
 import nl.neurone.domain.*;
 import nl.neurone.stream.IBitInputStream;
 
-public class Decoder {
-    private IBitInputStream inputStream;
-    private HuffmanTree tree;
+public class AbstractDecoder {
+    protected IBitInputStream inputStream;
+    protected HuffmanTree tree;
 
-    public Decoder(IBitInputStream inputStream) {
+    public AbstractDecoder(IBitInputStream inputStream) {
         this.inputStream = inputStream;
         this.tree = new SimpleHuffmanTree();
-        for (char c = 0; c <= 255; c++) {
-            tree.addValue(c);
-        }
     }
 
     public char decode() {
+        Leaf leaf = (Leaf) decodedLeaf();
+        char value = leaf.getValue();
+        tree.incrementFrequency(value);
+        return value;
+    }
+
+    AbstractLeaf decodedLeaf() {
         TreeNode current = tree.getRoot();
-        while (!(current instanceof Leaf)) {
+        while (!(current instanceof AbstractLeaf)) {
             Node curNode = (Node)current;
             final boolean bit = inputStream.readBit();
             current = bit ? curNode.getRight() : curNode.getLeft();
         }
-        final char value = ((Leaf) current).getValue();
-        tree.incrementFrequency(value);
-        return value;
+        return (AbstractLeaf) current;
     }
 }

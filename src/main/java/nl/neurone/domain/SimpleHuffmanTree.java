@@ -28,6 +28,12 @@ public class SimpleHuffmanTree extends AbstractHuffmanTree {
         }
     }
 
+    @Override
+    public void addLeaf(AbstractLeaf leaf) {
+        leafs.add(leaf);
+        updateTree();
+    }
+
     private void addSorted(List<TreeNode> treeNodeList, Node parent) {
         // TODO: fix deze implementatie, veel sneller maar dan werken de EncoderTest/DecoderTest test niet meer omdat deze een specifieke ordering van de treenodes verwacht
 //        int index = Collections.binarySearch(treeNodeList, parent, comparator);

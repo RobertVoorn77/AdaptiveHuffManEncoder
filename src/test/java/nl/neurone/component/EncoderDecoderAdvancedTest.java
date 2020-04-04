@@ -7,15 +7,16 @@ import org.junit.Test;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
-public class EncoderDecoderTest {
+public class EncoderDecoderAdvancedTest {
 
     @Test
-    public void encodeDecode_simpleHuffmanTree() {
+    public void encodeDecode() {
         // given
         BitInputOutputStreamTester inputOutputStream = new BitInputOutputStreamTester();
-        Encoder enc;
-        Decoder dec;
+        EncoderAdvanced enc;
+        DecoderAdvanced dec;
         final Random random = new Random();
         char[] randomChars = new char[100];
         for (int i = 0; i < randomChars.length; i++) {
@@ -24,13 +25,13 @@ public class EncoderDecoderTest {
 
         // when
         for (char c : randomChars) {
-            enc = new Encoder(inputOutputStream);
+            enc = new EncoderAdvanced(inputOutputStream);
             enc.encode(c);
         }
 
         // then
         for (char c : randomChars) {
-            dec = new Decoder(inputOutputStream);
+            dec = new DecoderAdvanced(inputOutputStream);
             assertEquals(c, dec.decode());
         }
     }
@@ -45,6 +46,7 @@ public class EncoderDecoderTest {
 
         @Override
         public void writeLong(long l) {
+            bits += ">>" + l + "<<";
         }
 
         @Override
@@ -56,7 +58,15 @@ public class EncoderDecoderTest {
 
         @Override
         public long readLong() {
-            return 0;
+            if (bits.indexOf(">>") != 0) {
+                fail("er wordt hier geen long verwacht");
+            }
+            int i = bits.indexOf("<<");
+            String value = bits.substring(2, i);
+            long l = Long.parseLong(value);
+            char c = (char)l;
+            bits = bits.substring(i + 2);
+            return c;
         }
 
         @Override

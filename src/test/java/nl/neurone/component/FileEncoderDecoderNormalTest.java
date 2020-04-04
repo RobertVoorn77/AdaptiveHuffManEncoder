@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-public class FileEncoderDecoderTest {
+public class FileEncoderDecoderNormalTest {
 
     @Ignore
     public void testLargeFile() {
@@ -18,8 +18,8 @@ public class FileEncoderDecoderTest {
         String compFile = "C:\\Users\\Roba\\IdeaProjects\\AdaptiveHuffManEncoderFromGithub\\testData\\testFile.robzip";
         String outFile = "C:\\Users\\Roba\\IdeaProjects\\AdaptiveHuffManEncoderFromGithub\\testData\\testFile.out";
         try {
-            new FileEncoder(origFile, compFile);
-        new FileDecoder(compFile, outFile);
+            new FileEncoderNormal(origFile, compFile);
+        new FileDecoderNormal(compFile, outFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,8 +32,8 @@ public class FileEncoderDecoderTest {
         String compFile = "C:\\Users\\Roba\\IdeaProjects\\AdaptiveHuffManEncoderFromGithub\\testData\\testFileSmall.robzip";
         String outFile = "C:\\Users\\Roba\\IdeaProjects\\AdaptiveHuffManEncoderFromGithub\\testData\\testFileSmall.out";
         try {
-            new FileEncoder(origFile, compFile);
-            new FileDecoder(compFile, outFile);
+            new FileEncoderNormal(origFile, compFile);
+            new FileDecoderNormal(compFile, outFile);
         } catch (IOException e) {
             e.printStackTrace();
         }

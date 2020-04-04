@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class EncoderTest {
+public class EncoderNormalTest {
 
     @Test
     public void encode() {
@@ -24,7 +24,7 @@ public class EncoderTest {
         // when & then
         for (Map.Entry<Character, String> entry : expectedEncoding.entrySet()) {
             final BitOutputStreamTester outputStream = new BitOutputStreamTester();
-            Encoder enc = new Encoder(outputStream);
+            EncoderNormal enc = new EncoderNormal(outputStream);
             enc.encode(entry.getKey());
             String encodedBits = outputStream.getBits();
             assertEquals(entry.getValue(), encodedBits);
