@@ -1,6 +1,5 @@
 package nl.neurone.component;
 
-import nl.neurone.domain.SimpleHuffmanTree;
 import nl.neurone.stream.IBitInputStream;
 import nl.neurone.stream.IBitOutputStream;
 import org.junit.Test;
@@ -25,13 +24,13 @@ public class EncoderDecoderTest {
 
         // when
         for (char c : randomChars) {
-            enc = new Encoder(inputOutputStream, new SimpleHuffmanTree());
+            enc = new Encoder(inputOutputStream);
             enc.encode(c);
         }
 
         // then
         for (char c : randomChars) {
-            dec = new Decoder(inputOutputStream, new SimpleHuffmanTree());
+            dec = new Decoder(inputOutputStream);
             assertEquals(c, dec.decode());
         }
     }

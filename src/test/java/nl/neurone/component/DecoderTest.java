@@ -1,6 +1,5 @@
 package nl.neurone.component;
 
-import nl.neurone.domain.SimpleHuffmanTree;
 import nl.neurone.stream.IBitInputStream;
 import org.junit.Test;
 
@@ -25,7 +24,7 @@ public class DecoderTest {
         // when & then
         for (Map.Entry<String, Character> entry : expectedEncoding.entrySet()) {
             final BitInputStreamTester inputStream = new BitInputStreamTester();
-            Decoder dec = new Decoder(inputStream, new SimpleHuffmanTree());
+            Decoder dec = new Decoder(inputStream);
             inputStream.setBits(entry.getKey());
             Character decoded = dec.decode();
             System.out.println("entry.value: " + entry.getValue());

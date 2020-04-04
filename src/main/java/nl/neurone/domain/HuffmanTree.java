@@ -16,11 +16,6 @@ public interface HuffmanTree {
     Leaf getLeafNode(char c);
 
     /**
-     * This is used by the encoder and decoder toe create the content of the tree during initialization
-     */
-    void initialize();
-
-    /**
      * Adds a node to the Huffman tree
      * @param c value that needs to be in the Huffman tree for encoding/decoding
      */
