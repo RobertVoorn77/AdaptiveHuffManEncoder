@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class DecoderTest {
 
     @Test
-    public void decode_simpleHuffmanTree() {
+    public void decode() {
         // given
         Map<String, Character> expectedEncoding = new HashMap<>();
         expectedEncoding.put("00000010", (char) 2);

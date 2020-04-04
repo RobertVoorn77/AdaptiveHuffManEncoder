@@ -1,5 +1,6 @@
 package nl.neurone.component;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ import static org.junit.Assert.assertTrue;
 
 public class FileEncoderDecoderTest {
 
-    @Test
+    @Ignore
     public void testLargeFile() {
         String origFile = "C:\\Users\\Roba\\IdeaProjects\\AdaptiveHuffManEncoderFromGithub\\testData\\testFile.txt";
         String compFile = "C:\\Users\\Roba\\IdeaProjects\\AdaptiveHuffManEncoderFromGithub\\testData\\testFile.robzip";
